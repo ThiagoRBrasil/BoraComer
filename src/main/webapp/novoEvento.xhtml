@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Novo Evento - Bora Comer</title>
+            </f:facet>
+        </h:head>
+        <h:body>
+            <h1>Cadastro Novo Evento</h1>
+            <h:form id="formNovoEvento">
+                <h:panelGrid columns="2" cellpadding="5">
+
+                    <p:outputLabel value="Nome do Evento: " for="inputNomeEvento"/>
+                    <p:inputText id="inputNomeEvento" value="#{controllerEvento.nome}" />
+
+                    <p:outputLabel value="Local do Evento: " for="inputRestaurante"/>
+                    <p:inputText id="inputRestaurante" value="#{controllerEvento.local}" />
+
+                    <p:outputLabel value="Data: " for="inputDateEvento"/>
+                    <p:inputMask id="inputDateEvento" value="#{controllerEvento.date}" mask="99/99/9999"/>
+                    
+                    <h:outputText value="Hora:"/>  
+                    <p:inputText id="inputHorario" value="#{controllerEvento.hora}" />
+                    
+                    <p:outputLabel value="Descrição: " for="inputDescEvento"/>
+                    <p:inputTextarea id="inputDescEvento" value="#{controllerEvento.descricao}" />
+                    
+                </h:panelGrid>
+                
+                <p:commandButton value="Criar" id="btnNovoEvento" styleClass="ui-priority-primary" action="#{controllerEvento.criarNovo}" />
+                <p:commandButton value="Cancelar" id="btnCadastroRestauranteCancelar" action="#{controllerEvento.cancelarNovoEvento()}" styleClass="ui-priority-primary" />
+            </h:form>
+        </h:body>
+    </f:view>
+</html>

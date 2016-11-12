@@ -23,7 +23,7 @@ public class RestauranteDAO {
 		this.entityManager.remove(this.entityManager.contains(restaurante) ? restaurante : this.entityManager.merge(restaurante));
 	}
 
-	public List<Restaurante> listaUsuarios() {
+	public List<Restaurante> listaRestaurantes() {
 		TypedQuery<Restaurante> query = entityManager.createQuery("select u from Restaurante u", Restaurante.class);
 		return query.getResultList();
 	}
@@ -36,6 +36,15 @@ public class RestauranteDAO {
 	@Transactional
 	public void atualizar(Restaurante restaurante) {
 		this.entityManager.merge(restaurante);
+	}
+	
+	@Transactional
+	public Restaurante findById(Long id) {
+		String queryStr = "select u from Restaurante u where u.id = :id";
+		TypedQuery<Restaurante> query = this.entityManager.createQuery(queryStr, Restaurante.class);
+		query.setParameter("id", id);
+		List<Restaurante> restaurantes = query.getResultList();
+		return restaurantes.isEmpty() ? null : restaurantes.get(0);
 	}
 
 }

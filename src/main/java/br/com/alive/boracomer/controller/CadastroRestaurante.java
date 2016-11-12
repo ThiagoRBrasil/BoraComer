@@ -13,7 +13,7 @@ import javax.inject.Named;
 
 @Named
 @RequestScoped
-public class ControllerCadastroRestaurante implements Serializable {
+public class CadastroRestaurante implements Serializable {
 
     private Restaurante restaurante;
     private String nome;

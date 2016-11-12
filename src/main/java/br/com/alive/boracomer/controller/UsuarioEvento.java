@@ -10,7 +10,7 @@ import javax.inject.Named;
 
 @Named
 @RequestScoped
-public class ControllerEvento extends Controller implements Serializable {
+public class UsuarioEvento extends Controller implements Serializable {
 
     private Evento evento;
     private String nome;
@@ -24,11 +24,11 @@ public class ControllerEvento extends Controller implements Serializable {
 
     public String cadastrar() {
         try {
-            evento.setNome(nome);
+        	evento.setNome(nome);
 //        evento.setRestaurante(local);
-            evento.setDescricao(descricao);
-            evento.setData(date);
-            evento.setHora(hora);
+        	evento.setDescricao(descricao);
+        	evento.setData(date);
+        	evento.setHora(hora);
 
             super.usuario.addEvento(evento);
 

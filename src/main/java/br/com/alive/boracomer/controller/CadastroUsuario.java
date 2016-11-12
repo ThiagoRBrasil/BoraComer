@@ -15,7 +15,7 @@ import javax.inject.Named;
 
 @Named
 @RequestScoped
-public class ControllerCadastroUsuario implements Serializable {
+public class CadastroUsuario implements Serializable {
 
     private Usuario usuario;
 

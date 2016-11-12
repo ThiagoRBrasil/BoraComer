@@ -14,7 +14,7 @@ import java.util.List;
 
 @Named
 @RequestScoped
-public class ControllerLogin extends Controller implements Serializable {
+public class Login extends Controller implements Serializable {
 
     private String user;
     private String pass;

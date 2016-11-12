@@ -15,7 +15,7 @@ import javax.inject.Named;
 
 @Named
 @RequestScoped
-public class ControllerHome extends Controller implements Serializable{
+public class Home extends Controller implements Serializable{
 
 	private List<Usuario> listaUsuarios;
     

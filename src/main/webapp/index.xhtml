@@ -8,27 +8,24 @@
         <title>Bora Comer - Login</title>
     </h:head>
     <h:body>
-        <h:link outcome="home" value="Página de boas-vindas do Primefaces" />
-        <br />
-        <h1>Login</h1>
-        <h:form id="formLogin">
-            <h:panelGrid columns="2" cellpadding="5">
-	
+    	<h:panelGrid width="100%" style="text-align:center">
+    		<p:graphicImage url="imagens/logo.png" position="center" />
+    		<br />
+        	<h:form id="formLogin">
+	            <h:panelGrid columns="2" cellpadding="5" style="text-align:center">
 	                <p:outputLabel value="Login: " for="inputLogin"/>
 	                <p:inputText id="inputLogin" value="#{home.user}" />
 	
 	                <p:outputLabel value="Senha: " for="inputPassword"/>
 	                <p:password id="inputPassword" value="#{home.pass}" />
-	
 	            </h:panelGrid>
 	            <p:growl id="growl" life="4000" />
 	            <p:commandButton value="Entrar" id="btnLoginEntrar" update="growl" action="#{home.loginUsuario}" styleClass="ui-priority-primary" />
-            </h:form>
-            <h:form>
-            <p:commandButton value="Cadastrar" id="btnLoginCadastrar" action="#{home.cadastrarUsuario}" styleClass="ui-priority-primary" />
+	            <p:commandButton value="Cadastrar" id="btnLoginCadastrar" action="#{home.cadastrarUsuario}" styleClass="ui-priority-primary" />
             </h:form>
             <h:form>
             <p:commandButton value="Cadastrar Restaurante" id="btnLoginCadastrarRest" action="#{home.cadastrarRestaurante}" styleClass="ui-priority-primary" />
             </h:form>
+    	</h:panelGrid>
     </h:body>
 </html>

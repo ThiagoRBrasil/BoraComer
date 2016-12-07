@@ -2,8 +2,8 @@
 <persistence version="2.1"
 	xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
-
-	<persistence-unit name="boracomer" transaction-type="JTA">
+	
+	<persistence-unit name="boracomer" transaction-type="JTA" >
 		<jta-data-source>java:jboss/datasources/boracomer</jta-data-source>
 		<class>br.com.alive.boracomer.entity.Amigo</class>
 		<class>br.com.alive.boracomer.entity.Endereco</class>
@@ -13,7 +13,7 @@
 
 		<properties>
 			<!-- Properties for Hibernate -->
-			<property name="hibernate.hbm2ddl.auto" value="auto" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.format_sql" value="true" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL9Dialect" />

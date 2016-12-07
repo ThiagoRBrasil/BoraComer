@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>Bora Comer - Login</title>
+    </h:head>
+    <h:body>
+        <h:link outcome="home" value="Página de boas-vindas do Primefaces" />
+        <br />
+        <h1>Login</h1>
+        <h:form id="formLogin">
+            <h:panelGrid columns="2" cellpadding="5">
+
+                <p:outputLabel value="Login: " for="inputLogin"/>
+                <p:inputText id="inputLogin" value="#{controllerLogin.user}" />
+
+                <p:outputLabel value="Senha: " for="inputPassword"/>
+                <p:password id="inputPassword" value="#{controllerLogin.pass}" />
+
+            </h:panelGrid>
+            <p:growl id="growl" life="2000" />
+            <p:commandButton value="Entrar" id="btnLoginEntrar" update="growl" action="#{controllerLogin.loginUsuario}" styleClass="ui-priority-primary" />
+            <p:commandButton value="Cadastrar" id="btnLoginCadastrar" action="#{controllerLogin.cadastrarUsuario}" styleClass="ui-priority-primary" />
+        </h:form>
+            <p:commandButton value="Cadastrar Restaurante" id="btnLoginCadastrarRest" action="#{controllerLogin.cadastrarRestaurante}" styleClass="ui-priority-primary" />
+    </h:body>
+</html>

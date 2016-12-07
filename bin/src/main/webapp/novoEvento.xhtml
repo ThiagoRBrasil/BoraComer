@@ -18,24 +18,24 @@
                 <h:panelGrid columns="2" cellpadding="5">
 
                     <p:outputLabel value="Nome do Evento: " for="inputNomeEvento"/>
-                    <p:inputText id="inputNomeEvento" value="#{home.nomeEvento}" />
+                    <p:inputText id="inputNomeEvento" value="#{controllerEvento.nome}" />
 
-<!--                     <p:outputLabel value="Local do Evento: " for="inputRestaurante"/> -->
-<!--                     <p:inputText id="inputRestaurante" value="#{home.localEvento}" /> -->
+                    <p:outputLabel value="Local do Evento: " for="inputRestaurante"/>
+                    <p:inputText id="inputRestaurante" value="#{controllerEvento.local}" />
 
-                    <p:outputLabel value="Data:" for="inputDateEvento"/>
-                    <p:inputMask id="inputDateEvento" value="#{home.dataEvento}" mask="99/99/9999"/>
+                    <p:outputLabel value="Data: " for="inputDateEvento"/>
+                    <p:inputMask id="inputDateEvento" value="#{controllerEvento.date}" mask="99/99/9999"/>
                     
-                    <h:outputText value="Hora:" for="inputHorario"/>  
-                    <p:inputText id="inputHorario" value="#{home.horaEvento}" />
+                    <h:outputText value="Hora:"/>  
+                    <p:inputText id="inputHorario" value="#{controllerEvento.hora}" />
                     
                     <p:outputLabel value="Descrição: " for="inputDescEvento"/>
-                    <p:inputTextarea id="inputDescEvento" value="#{home.descricaoEvento}" />
+                    <p:inputTextarea id="inputDescEvento" value="#{controllerEvento.descricao}" />
                     
                 </h:panelGrid>
-                <p:growl id="growlEvento" life="4000" />
-                <p:commandButton value="Criar" update="growlEvento" id="btnNovoEvento" styleClass="ui-priority-primary" action="#{home.cadastrarEvento}" />
-                <p:commandButton value="Cancelar" id="btnCadastroRestauranteCancelar" action="#{home.cancelarNovoEvento}" styleClass="ui-priority-primary" />
+                
+                <p:commandButton value="Criar" id="btnNovoEvento" styleClass="ui-priority-primary" action="#{controllerEvento.criarNovo}" />
+                <p:commandButton value="Cancelar" id="btnCadastroRestauranteCancelar" action="#{controllerEvento.cancelarNovoEvento()}" styleClass="ui-priority-primary" />
             </h:form>
         </h:body>
     </f:view>

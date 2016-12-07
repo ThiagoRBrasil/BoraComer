@@ -39,6 +39,7 @@ public class Home implements Serializable {
 
 	@PostConstruct
 	public void reset() {
+		System.out.println("POST <<<<<<<<<<<<<<<<<<<<<+");
 		this.user = null;
 		this.pass = null;
 		this.nomeEvento = null;
@@ -61,7 +62,9 @@ public class Home implements Serializable {
 		System.out.println("antes do FOR");
 		List<Usuario> usuarios = usuarioDao.listaUsuarios();
 		System.out.println("RECEBE LISTA");
+		System.out.println("O TAMANHO DA LISTA EH >>>>> " + usuarios.size());
 		for (int i = 0; i < usuarios.size(); i++) {
+			System.out.println("O USUARIO QUE ESTA PASSANDO EH O > > > > " + usuarios.get(i).getNome());
 			if (usuarios.get(i).getNome().equals(user) && usuarios.get(i).getPass().equals(pass)) {
 				this.usuario = usuarios.get(i);
 				eventos = eventoDAO.findByUserId(usuario.getId_usuario());
@@ -78,11 +81,9 @@ public class Home implements Serializable {
 				return "home";
 			}
 			// }
-
-			return "home?faces-redirect=true";
 		}
 		addMessage("Usuario/Senha incorreto(s)");
-		return null;
+		return "index";
 	}
 
 	public String cadastrarUsuario() {
@@ -99,7 +100,8 @@ public class Home implements Serializable {
 	}
 
 	public String logout() {
-		return "index?faces-redirect=true";
+		this.usuario = new Usuario();
+		return "index";
 	}
 
 	public String novoEvento() {

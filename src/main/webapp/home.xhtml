@@ -18,22 +18,23 @@
 
 		<p:layout fullPage="true">
 
-			<p:layoutUnit position="north" size="100" resizable="true"
+			<p:layoutUnit position="north" size="130" resizable="true"
 				closable="true" collapsible="true">
 				<h:form>
 					<h:panelGrid columns="3" cellpadding="5">
+
+						<p:outputLabel value="Seja Bem Vindo #{home.usuario.nome}" />
+						<p:outputLabel value="Identificador: #{home.numId}" />
+
+						<p:commandButton value="Logout" id="btnSair"
+							action="#{home.logout}" styleClass="ui-priority-primary" />
+
 						<p:outputLabel value="Convidar: " for="inputConvidarAmigo" />
 						<p:inputText id="inputConvidarAmigo" />
 						<p:commandButton value="Convidar" id="btnConvidarAmigo"
 							action="#{home.convidarAmigo}" styleClass="ui-priority-primary" />
 
-						Identificador:
-						#{home.numId}
-						
-						<p:commandButton value="Logout" id="btnSair"
-							action="#{home.logout}" styleClass="ui-priority-primary" />
 					</h:panelGrid>
-					
 				</h:form>
 			</p:layoutUnit>
 

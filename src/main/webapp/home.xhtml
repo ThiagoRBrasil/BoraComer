@@ -30,7 +30,7 @@
 							action="#{home.logout}" styleClass="ui-priority-primary" />
 
 						<p:outputLabel value="Convidar: " for="inputConvidarAmigo" />
-						<p:inputText id="inputConvidarAmigo" />
+						<p:inputText id="inputConvidarAmigo" value="#{home.idUserToInvite}" />
 						<p:commandButton value="Convidar" id="btnConvidarAmigo"
 							action="#{home.convidarAmigo}" styleClass="ui-priority-primary" />
 

@@ -1,7 +1,9 @@
 package br.com.alive.boracomer.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.FormParam;
@@ -26,50 +28,41 @@ public class RequestUsuario {
 	@Inject
 	private UsuarioDAO usuarioDAO;
 
-	// @Inject
-	// private EventoDAO eventoDAO;
+	@Inject
+	private EventoDAO eventoDAO;
 
-	// Return unique element passing the ID on URL like JSON
-	@GET
-	@Path("{id}")
-	@Produces({ MediaType.APPLICATION_JSON + ";charset=utf-8" })
-	public Restaurante getRestauranteJSON(@PathParam("id") Long id) {
-		return this.usuarioDAO.findById(id);
-	}
-
-	// Save a new Restaurante passing all attributes by URL
-	@GET
-	@Path("/saveUsuario/{nome}/{pass}/{idade}/{email}")
-	@Produces({ MediaType.APPLICATION_JSON + ";charset=utf-8" })
-	public Response saveRestauranteJSON(@PathParam("nome") String nome, @PathParam("pass") String pass,
-			@PathParam("idade") String idade, @PathParam("email") String email) {
-
-		Usuario usuario = new Usuario();
-
-		usuario.setNome(nome);
-		usuario.setPass(pass);
-		usuario.setIdade(Integer.parseInt(idade));
-		usuario.setEmail(email);
-
-		this.usuarioDAO.atualizar(usuario);
-		return Response.status(200).entity("Salvo com sucesso!").build();
-	}
-
-	// Delete the unique Restaurante by ID
 	@POST
 	@Path("/getAllEventos")
 	@Produces({ MediaType.APPLICATION_JSON + ";charset=utf-8" })
-	public Response deleteRestauranteJSON(@FormParam("nome") String nome, @FormParam("pass") String pass) {
-		this.restauranteDAO.excluir(this.restauranteDAO.findById(id));
-		return Response.status(200).entity("Feito").build();
+	public List<Evento> getAllEventosPost(@FormParam("nome") String nome, @FormParam("pass") String pass) {
+		Usuario usuario = new Usuario();
+		List<Usuario> usuarios = usuarioDAO.listaUsuarios();
+		for (int i = 0; i < usuarios.size(); i++) {
+			if (usuarios.get(i).getNome().equals(nome) && usuarios.get(i).getPass().equals(pass)) {
+				usuario = usuarios.get(i);
+				return eventoDAO.findByUserId(usuario.getId_usuario());
+			}
+		}
+		List<Evento> listaEventos = new ArrayList<Evento>();
+		listaEventos.add(new Evento());
+		return listaEventos;
 	}
 
-	// Retorn all Restaurante like JSON
 	@GET
-	@Path("/getAllEventos")
+	@Path("/getAllEventos/{nome}/{pass}")
 	@Produces({ MediaType.APPLICATION_JSON + ";charset=utf-8" })
-	public List<Restaurante> getListaJogadoresJSON() {
-		return this.usuarioDAO.listaUsuarios();
+	public List<Evento> getAllEventosGet(@PathParam("nome") String nome, @PathParam("pass") String pass) {
+		Usuario usuario = new Usuario();
+		List<Usuario> usuarios = usuarioDAO.listaUsuarios();
+		for (int i = 0; i < usuarios.size(); i++) {
+			if (usuarios.get(i).getNome().equals(nome) && usuarios.get(i).getPass().equals(pass)) {
+				usuario = usuarios.get(i);
+				return eventoDAO.findByUserId(usuario.getId_usuario());
+			}
+		}
+		List<Evento> listaEventos = new ArrayList<Evento>();
+		listaEventos.add(new Evento());
+		return listaEventos;
 	}
 
 }

@@ -37,12 +37,6 @@ public class Usuario implements Serializable {
 
     @Column(name = "email", nullable = false)
     private String email;
-    
-//    @OneToMany(mappedBy="evento_usuario")
-//    private List<Evento> eventos;
-//
-//    @OneToMany(mappedBy = "usuario")
-//    private List<Amigo> amigos;
 
     //
     //GETTERS AND SETTERS\\

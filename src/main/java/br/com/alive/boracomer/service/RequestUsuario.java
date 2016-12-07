@@ -65,4 +65,25 @@ public class RequestUsuario {
 		return listaEventos;
 	}
 
+	@GET
+	@Path("/addUsuario/{nome}/{pass}/{idade}/{email}")
+	@Produces({ MediaType.APPLICATION_JSON + ";charset=utf-8" })
+	public String getAllEventosGet(@PathParam("nome") String nome, @PathParam("pass") String pass,
+			@PathParam("idade") String idade, @PathParam("email") String email) {
+
+		try {
+			Usuario usuario = new Usuario();
+			usuario.setNome(nome);
+			usuario.setPass(pass);
+			usuario.setIdade(Integer.parseInt(idade));
+			usuario.setEmail(email);
+
+			usuarioDAO.atualizar(usuario);
+			return "Cadastrado com Sucesso";
+		} catch (Exception e) {
+			return "Houve um erro no cadastro";
+		}
+		
+	}
+
 }

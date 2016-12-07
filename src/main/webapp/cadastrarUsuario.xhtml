@@ -13,21 +13,21 @@
             <h:panelGrid columns="2" cellpadding="5">
 
                 <p:outputLabel value="Nome: " for="inputCadastrarNomeUsuario"/>
-                <p:inputText id="inputCadastrarNomeUsuario" value="#{controllerCadastroUsuario.nome}" />
+                <p:inputText id="inputCadastrarNomeUsuario" value="#{cadastroUsuario.nome}" />
 
                 <p:outputLabel value="Senha: " for="inputCadastrarPasswordUsuario"/>
-                <p:inputText id="inputCadastrarPasswordUsuario" value="#{controllerCadastroUsuario.pass}" />
+                <p:inputText id="inputCadastrarPasswordUsuario" value="#{cadastroUsuario.pass}" />
 
                 <p:outputLabel value="Idade: " for="inputCadastrarIdadeUsuario"/>
-                <p:inputText id="inputCadastrarIdadeUsuario" value="#{controllerCadastroUsuario.idade}" />
+                <p:inputText id="inputCadastrarIdadeUsuario" value="#{cadastroUsuario.idade}" />
 
                 <p:outputLabel value="E-mail: " for="inputCadastrarEmailUsuario"/>
-                <p:inputText id="inputCadastrarEmailUsuario" value="#{controllerCadastroUsuario.email}" />
+                <p:inputText id="inputCadastrarEmailUsuario" value="#{cadastroUsuario.email}" />
 
             </h:panelGrid>
 
-            <p:commandButton value="Cadastrar" id="btnCadastroUsuarioCadastrar" action="#{controllerCadastroUsuario.cadastrarUsuario}" styleClass="ui-priority-primary" />
-            <p:commandButton value="Cancelar" id="btnCadastroUsuarioCancelar" action="#{controllerCadastroUsuario.cancelarCadastro}" styleClass="ui-priority-primary" />
+            <p:commandButton value="Cadastrar" id="btnCadastroUsuarioCadastrar" action="#{cadastroUsuario.cadastrarUsuario}" styleClass="ui-priority-primary" />
+            <p:commandButton value="Cancelar" id="btnCadastroUsuarioCancelar" action="#{cadastroUsuario.cancelarCadastro}" styleClass="ui-priority-primary" />
         </h:form>
     </h:body>
 </html>

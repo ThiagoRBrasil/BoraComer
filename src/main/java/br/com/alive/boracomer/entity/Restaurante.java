@@ -2,110 +2,137 @@ package br.com.alive.boracomer.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
-
 @Entity
-@Table(name = "restaurante")
+@Table(name = "restaurante", schema = "boracomer")
+@SequenceGenerator(name = "RestauranteSequence", sequenceName = "SQ_ID_RESTAURANTE", allocationSize = 1)
 public class Restaurante implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 3011260977748731210L;
+
+	public Restaurante() {
+	};
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-    private Long id_restaurante;
-    
-    @OneToMany(mappedBy = "restaurante")
-    private List<Evento> eventos;
-    
-    @Column(name = "nome", nullable = false)
-    private String nome;
-    
-    @OneToOne(optional = false,
-            cascade = CascadeType.ALL)
-    private Endereco endereco;
-    
-    @Column(name = "tipo", nullable = false)
-    private String tipo;
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "RestauranteSequence")
+	private Long id;
 
-    //
-    //GETTERS AND SETTERS\\
-    //
+	@Column(name = "nome")
+	private String nome;
 
-    public Long getId_restaurante() {
-        return id_restaurante;
-    }
+	@Column(name = "tipo")
+	private String tipo;
 
-    public void setId_restaurante(Long id_restaurante) {
-        this.id_restaurante = id_restaurante;
-    }
+	@Column(name = "rua")
+	private String rua;
 
-    public List<Evento> getEventos() {
-        return eventos;
-    }
+	@Column(name = "numero")
+	private String numero;
 
-    public void setEventos(List<Evento> eventos) {
-        this.eventos = eventos;
-    }
+	@Column(name = "bairro")
+	private String bairro;
 
-    public String getNome() {
-        return nome;
-    }
+	@Column(name = "contato")
+	private String contato;
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+	@Column(name = "cidade")
+	private String cidade;
 
-    public Endereco getEndereco() {
-        return endereco;
-    }
+	//
+	// GETTERS AND SETTERS\\
+	//
 
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public String getTipo() {
-        return tipo;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
+	public String getNome() {
+		return nome;
+	}
 
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 73 * hash + Objects.hashCode(this.id_restaurante);
-        return hash;
-    }
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Restaurante other = (Restaurante) obj;
-        if (!Objects.equals(this.id_restaurante, other.id_restaurante)) {
-            return false;
-        }
-        return true;
-    }
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	public String getRua() {
+		return rua;
+	}
+
+	public void setRua(String rua) {
+		this.rua = rua;
+	}
+
+	public String getNumero() {
+		return numero;
+	}
+
+	public void setNumero(String numero) {
+		this.numero = numero;
+	}
+
+	public String getBairro() {
+		return bairro;
+	}
+
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
+	}
+
+	public String getContato() {
+		return contato;
+	}
+
+	public void setContato(String contato) {
+		this.contato = contato;
+	}
+
+	public String getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
+
+	@Override
+	public int hashCode() {
+		int hash = 3;
+		hash = 73 * hash + Objects.hashCode(this.id);
+		return hash;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		final Restaurante other = (Restaurante) obj;
+		if (!Objects.equals(this.id, other.id)) {
+			return false;
+		}
+		return true;
+	}
 
 }

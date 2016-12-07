@@ -16,7 +16,8 @@ import java.util.List;
 @RequestScoped
 public class Login extends Controller implements Serializable {
 
-    private String user;
+	private static final long serialVersionUID = -1323864336766649604L;
+	private String user;
     private String pass;
     
     @Inject
@@ -31,14 +32,17 @@ public class Login extends Controller implements Serializable {
     public String loginUsuario() {
         if (this.user.equals("admin") && this.pass.equals(pass)) {
             super.usuario = new Usuario();
-            
+            System.out.println("antes do FOR");
             List<Usuario> usuarios = usuarioDao.listaUsuarios();
-            boolean log = false;
-            int cont = 0;
+            System.out.println("RECEBE LISTA");
             for(int i = 0; i < usuarios.size();i++){
             	if(usuarios.get(i).getNome().equals(user)
             			&& usuarios.get(i).getPass().equals(pass)){
-            		super.usuario = usuarios.get(i);
+            		this.usuario = usuarios.get(i);
+            		System.out.println("Meu nome >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> " + super.usuario.getNome());
+            		
+            		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", usuarios.get(i));
+            		return "home?faces-redirect=true";
             	}
             }
             

@@ -4,8 +4,11 @@ import br.com.alive.boracomer.dao.EnderecoDAO;
 import br.com.alive.boracomer.dao.RestauranteDAO;
 import br.com.alive.boracomer.dao.UsuarioDAO;
 import br.com.alive.boracomer.entity.Endereco;
+import br.com.alive.boracomer.entity.Evento;
 import br.com.alive.boracomer.entity.Restaurante;
 import java.io.Serializable;
+import java.util.ArrayList;
+
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -35,15 +38,14 @@ public class CadastroRestaurante implements Serializable {
     public String cadastrarRestaurante() {
         restaurante.setNome(nome);
         restaurante.setTipo(tipo);
-
-        Endereco endereco = new Endereco();
-        endereco.setBairro(bairro);
-        endereco.setCidade(cidade);
-        endereco.setContato(contato);
-        endereco.setNumero(numero);
-        endereco.setRua(rua);
+        restaurante.setBairro(bairro);
+        restaurante.setCidade(cidade);
+        restaurante.setContato(contato);
+        restaurante.setNumero(numero);
+        restaurante.setRua(rua);
         restaurante.setNome(nome);
-        restaurante.setEndereco(endereco);
+
+//        restaurante.setEventos(new ArrayList<Evento>());
         restauranteDao.atualizar(restaurante);
 
         return "index?faces-redirect=true";

@@ -6,12 +6,16 @@ import java.util.List;
 
 @Entity
 @Table(name = "amigo", schema = "boracomer")
+@SequenceGenerator(name = "AmigoSequence", sequenceName = "SQ_ID_AMIGO", allocationSize = 1)
 public class Amigo implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5779511374825996826L;
 
 	@Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "AmigoSequence")
     private Long id_amigo;
 
     @ManyToOne

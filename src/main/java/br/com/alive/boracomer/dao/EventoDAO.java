@@ -1,6 +1,7 @@
 package br.com.alive.boracomer.dao;
 
 import br.com.alive.boracomer.entity.Evento;
+import br.com.alive.boracomer.entity.Restaurante;
 
 import javax.enterprise.context.Dependent;
 import javax.inject.Named;
@@ -11,7 +12,7 @@ import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.util.List;
 
-@Named("eventoDao")
+@Named
 @Dependent
 public class EventoDAO {
 
@@ -36,6 +37,14 @@ public class EventoDAO {
 	@Transactional
 	public void atualizar(Evento evento) {
 		this.entityManager.merge(evento);
+	}
+	
+	@Transactional
+	public List<Evento> findByUserId(Long idUsuario) {
+		String queryStr = "select u from Evento u where u.id_usuario = :idUsuario";
+		TypedQuery<Evento> query = this.entityManager.createQuery(queryStr, Evento.class);
+		query.setParameter("idUsuario", idUsuario);
+		return query.getResultList();
 	}
 
 }

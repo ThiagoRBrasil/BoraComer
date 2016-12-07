@@ -9,18 +9,23 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "endereco")
+@Table(name = "endereco", schema = "boracomer")
+@SequenceGenerator(name = "EnderecoSequence", sequenceName = "SQ_ID_ENDERECO", allocationSize = 1)
 public class Endereco implements Serializable {
-	
-	private static final long serialVersionUID = 1L;
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5422967444616865438L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "EnderecoSequence")
     private Long id_endereco;
 
     @Column(name = "rua", nullable = false)
@@ -38,8 +43,8 @@ public class Endereco implements Serializable {
     @Column(name = "cidade", nullable = true)
     private String cidade;
 
-    @OneToOne(mappedBy = "endereco")
-    private Restaurante restaurante;
+//    @OneToOne(mappedBy="endereco")
+//    private Restaurante restaurante;
     //
     //GETTERS AND SETTERS\\
     //
@@ -92,13 +97,13 @@ public class Endereco implements Serializable {
         this.cidade = cidade;
     }
 
-    public Restaurante getRestaurante() {
-        return restaurante;
-    }
-
-    public void setRestaurante(Restaurante restaurante) {
-        this.restaurante = restaurante;
-    }
+//    public Restaurante getRestaurante() {
+//        return restaurante;
+//    }
+//
+//    public void setRestaurante(Restaurante restaurante) {
+//        this.restaurante = restaurante;
+//    }
 
     @Override
     public int hashCode() {

@@ -11,7 +11,7 @@ import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.util.List;
 
-@Named("restauranteDao")
+@Named
 @Dependent
 public class RestauranteDAO {
 

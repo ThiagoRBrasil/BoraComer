@@ -13,18 +13,22 @@
         <h1>Login</h1>
         <h:form id="formLogin">
             <h:panelGrid columns="2" cellpadding="5">
-
-                <p:outputLabel value="Login: " for="inputLogin"/>
-                <p:inputText id="inputLogin" value="#{controllerLogin.user}" />
-
-                <p:outputLabel value="Senha: " for="inputPassword"/>
-                <p:password id="inputPassword" value="#{controllerLogin.pass}" />
-
-            </h:panelGrid>
-            <p:growl id="growl" life="2000" />
-            <p:commandButton value="Entrar" id="btnLoginEntrar" update="growl" action="#{controllerLogin.loginUsuario}" styleClass="ui-priority-primary" />
-            <p:commandButton value="Cadastrar" id="btnLoginCadastrar" action="#{controllerLogin.cadastrarUsuario}" styleClass="ui-priority-primary" />
-        </h:form>
-            <p:commandButton value="Cadastrar Restaurante" id="btnLoginCadastrarRest" action="#{controllerLogin.cadastrarRestaurante}" styleClass="ui-priority-primary" />
+	
+	                <p:outputLabel value="Login: " for="inputLogin"/>
+	                <p:inputText id="inputLogin" value="#{home.user}" />
+	
+	                <p:outputLabel value="Senha: " for="inputPassword"/>
+	                <p:password id="inputPassword" value="#{home.pass}" />
+	
+	            </h:panelGrid>
+	            <p:growl id="growl" life="4000" />
+	            <p:commandButton value="Entrar" id="btnLoginEntrar" update="growl" action="#{home.loginUsuario}" styleClass="ui-priority-primary" />
+            </h:form>
+            <h:form>
+            <p:commandButton value="Cadastrar" id="btnLoginCadastrar" action="#{home.cadastrarUsuario}" styleClass="ui-priority-primary" />
+            </h:form>
+            <h:form>
+            <p:commandButton value="Cadastrar Restaurante" id="btnLoginCadastrarRest" action="#{home.cadastrarRestaurante}" styleClass="ui-priority-primary" />
+            </h:form>
     </h:body>
 </html>

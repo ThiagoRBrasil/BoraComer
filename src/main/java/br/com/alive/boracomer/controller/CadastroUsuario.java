@@ -17,7 +17,9 @@ import javax.inject.Named;
 @RequestScoped
 public class CadastroUsuario implements Serializable {
 
-    private Usuario usuario;
+	private static final long serialVersionUID = -8480825489733058158L;
+
+	private Usuario usuario;
 
     private String nome;
     private String pass;
@@ -34,7 +36,6 @@ public class CadastroUsuario implements Serializable {
 
     public String cadastrarUsuario() {
 
-//        usuario.setId_usuario(Long.MIN_VALUE);
         usuario.setNome(nome);
         usuario.setPass(pass);
         usuario.setIdade(Integer.parseInt(idade));

@@ -4,8 +4,10 @@ import java.io.Serializable;
 
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,114 +18,105 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "evento")
+@Table(name = "evento", schema = "boracomer")
+@SequenceGenerator(name = "EventoSequence", sequenceName = "SQ_ID_EVENTO", allocationSize = 1)
 public class Evento implements Serializable {
-	
-	private static final long serialVersionUID = 1L;
+
+	private static final long serialVersionUID = -1358192875499455044L;
+
+	public Evento() {
+	};
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-    private Long id_evento;
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "EventoSequence")
+	private Long id;
 
-    @Column(name = "nome", nullable = false)
-    private String nome;
+	@Column(name = "nome")
+	private String nome;
 
-    @ManyToOne
-    @JoinColumn(name = "id_usuario")
-    private Usuario usuario;
+	@Column(name = "horario")
+	private String hora;
 
-    @ManyToOne
-    @JoinColumn(name = "id_restaurante")
-    private Restaurante restaurante;
+	@Column(name = "data")
+	private String data;
 
-    @Column(name = "horario", nullable = true)
-    private String hora;
-    
-    @Column(name = "data", nullable = true)
-    private String data;
+	@Column(name = "descricao")
+	private String descricao;
 
-    @Column(name = "descricao", nullable = true)
-    private String descricao;
+	@Column(name = "evento_usuario")
+	private Long id_usuario;
 
-    public Long getId_evento() {
-        return id_evento;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public void setId_evento(Long id_evento) {
-        this.id_evento = id_evento;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public String getNome() {
-        return nome;
-    }
+	public String getNome() {
+		return nome;
+	}
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
-    public Usuario getUsuario() {
-        return usuario;
-    }
+	public String getHora() {
+		return hora;
+	}
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
+	public void setHora(String hora) {
+		this.hora = hora;
+	}
 
-    public Restaurante getRestaurante() {
-        return restaurante;
-    }
+	public String getData() {
+		return data;
+	}
 
-    public void setRestaurante(Restaurante restaurante) {
-        this.restaurante = restaurante;
-    }
+	public void setData(String data) {
+		this.data = data;
+	}
 
-    public String getHora() {
-        return hora;
-    }
+	public String getDescricao() {
+		return descricao;
+	}
 
-    public void setHora(String hora) {
-        this.hora = hora;
-    }
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
 
-    public String getDescricao() {
-        return descricao;
-    }
+	public Long getId_usuario() {
+		return id_usuario;
+	}
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
+	public void setId_usuario(Long id_usuario) {
+		this.id_usuario = id_usuario;
+	}
 
-    public String getData() {
-        return data;
-    }
+	@Override
+	public int hashCode() {
+		int hash = 7;
+		hash = 89 * hash + Objects.hashCode(this.id);
+		return hash;
+	}
 
-    public void setData(String data) {
-        this.data = data;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 89 * hash + Objects.hashCode(this.id_evento);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Evento other = (Evento) obj;
-        if (!Objects.equals(this.id_evento, other.id_evento)) {
-            return false;
-        }
-        return true;
-    }
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		final Evento other = (Evento) obj;
+		if (!Objects.equals(this.id, other.id)) {
+			return false;
+		}
+		return true;
+	}
 
 }

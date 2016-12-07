@@ -7,7 +7,7 @@ import javax.ws.rs.core.Application;
  * Classe utilizada para ativar o uso do REST.
  */
 
-@ApplicationPath("/rest")
+@ApplicationPath("/request")
 public class AtivadorRest extends Application {
 
 }

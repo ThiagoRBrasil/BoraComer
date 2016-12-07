@@ -1,21 +1,19 @@
 package br.com.alive.boracomer.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 import javax.ws.rs.PathParam;
-import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import br.com.alive.boracomer.dao.EventoDAO;
 import br.com.alive.boracomer.dao.RestauranteDAO;
 import br.com.alive.boracomer.entity.Endereco;
+import br.com.alive.boracomer.entity.Evento;
 import br.com.alive.boracomer.entity.Restaurante;
 
 @Path("/restaurante")
@@ -23,6 +21,9 @@ public class RequestRestaurante {
 
 	@Inject
 	private RestauranteDAO restauranteDAO;
+	
+//	@Inject
+//	private EventoDAO eventoDAO;
 
 	// Return unique element passing the ID on URL like JSON
 	@GET
@@ -41,25 +42,31 @@ public class RequestRestaurante {
 			@PathParam("numero") String numero, @PathParam("bairro") String bairro,
 			@PathParam("contato") String contato, @PathParam("cidade") String cidade, @PathParam("tipo") String tipo) {
 
-		Endereco endereco = new Endereco();
-		endereco.setBairro(bairro);
-		endereco.setCidade(cidade);
-		endereco.setContato(contato);
-		endereco.setNumero(numero);
-		endereco.setRua(rua);
-
 		Restaurante restaurante = new Restaurante();
+		
 		restaurante.setNome(nome);
-		restaurante.setEndereco(endereco);
+		restaurante.setBairro(bairro);
+		restaurante.setCidade(cidade);
+		restaurante.setContato(contato);
+		restaurante.setNumero(numero);
+		restaurante.setRua(rua);
 		restaurante.setTipo(tipo);
-
+		
+//		Evento evento = new Evento();
+//		evento.setData("data");
+//		evento.setDescricao("descricao");
+//		evento.setHora("hora");
+//		evento.setNome("nome");
+//		evento.setEvento_restaurante(restaurante);
+//		restaurante.getEventos().add(evento);
+//		this.eventoDAO.atualizar(evento);
 		this.restauranteDAO.atualizar(restaurante);
 		return Response.status(200).entity("Salvo com sucesso!").build();
 	}
 
 	// Delete the unique Restaurante by ID
 	@GET
-	@Path("/deleteJogador/{id}")
+	@Path("/delRestaurante/{id}")
 	@Produces({ MediaType.APPLICATION_JSON + ";charset=utf-8" })
 	public Response deleteRestauranteJSON(
 			@PathParam("id") Long id) {
@@ -69,11 +76,10 @@ public class RequestRestaurante {
 
 	// Retorn all Restaurante like JSON
 	@GET
-	@Path("/listarRestaurantes")
+	@Path("/listRestaurantes")
 	@Produces({ MediaType.APPLICATION_JSON + ";charset=utf-8" })
 	public List<Restaurante> getListaJogadoresJSON() {
-		return this.restauranteDAO.listaRestaurantes();
-
+		return	this.restauranteDAO.listaRestaurantes();
 	}
 
 }

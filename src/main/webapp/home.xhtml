@@ -1,88 +1,96 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 
-    <f:view contentType="text/html">
-        <h:head>
-            <f:facet name="first">
-                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
-                <title>Bora Comer</title>
-            </f:facet>
-        </h:head>
+<f:view contentType="text/html">
+	<h:head>
+		<f:facet name="first">
+			<meta content='text/html; charset=UTF-8' http-equiv="Content-Type" />
+			<title>Bora Comer</title>
+		</f:facet>
+	</h:head>
 
-        <h:body>
-            <h:link outcome="home" value="Página de boas-vindas do Primefaces" />            
+	<h:body>
+		<h:link outcome="home" value="Página de boas-vindas do Primefaces" />
 
-            <p:layout fullPage="true">
+		<p:layout fullPage="true">
 
-                <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
-                    <h:form>
-                        <h:panelGrid columns="3" cellpadding="5">
-                            <p:outputLabel value="Convidar: " for="inputConvidarAmigo"/>
-                            <p:inputText id="inputConvidarAmigo" />
-                            <p:commandButton value="Convidar" id="btnConvidarAmigo" action="#{controllerHome.convidarAmigo()}" styleClass="ui-priority-primary" />
-                            
-                            <p:outputLabel value="#{controller.usuario.id_usuario}"/>
-                            <p:commandButton value="Sair" id="btnLoginSair" action="#{controllerHome.logout}" styleClass="ui-priority-primary" />
-                        </h:panelGrid>
-                    </h:form>
-                </p:layoutUnit>
+			<p:layoutUnit position="north" size="100" resizable="true"
+				closable="true" collapsible="true">
+				<h:form>
+					<h:panelGrid columns="3" cellpadding="5">
+						<p:outputLabel value="Convidar: " for="inputConvidarAmigo" />
+						<p:inputText id="inputConvidarAmigo" />
+						<p:commandButton value="Convidar" id="btnConvidarAmigo"
+							action="#{home.convidarAmigo}" styleClass="ui-priority-primary" />
 
-                <p:layoutUnit position="west" size="200">
-                    <h:form>
-                        <p:commandButton value="Novo Evento" id="btnNovoEvento" action="#{controllerHome.novoEvento}" styleClass="ui-priority-primary" />
-                    </h:form>
-                </p:layoutUnit>
+						Identificador:
+						#{home.numId}
+						
+						<p:commandButton value="Logout" id="btnSair"
+							action="#{home.logout}" styleClass="ui-priority-primary" />
+					</h:panelGrid>
+					
+				</h:form>
+			</p:layoutUnit>
+
+			<p:layoutUnit position="west" size="200">
+				<h:form>
+					<p:commandButton value="Novo Evento" id="btnNovoEvento"
+						action="#{home.novoEvento}" styleClass="ui-priority-primary" />
+				</h:form>
+			</p:layoutUnit>
 
 
-                <!-- sobre a lista de amigos -->
-                <p:layoutUnit position="east" size="280" resizable="true" collapsible="true" effect="drop">
-                    <p:dataList value="" var="ami" type="ordered">
-                        <f:facet name="header">
+			<!-- sobre a lista de amigos -->
+			<p:layoutUnit position="east" size="280" resizable="true"
+				collapsible="true" effect="drop">
+				<p:dataList value="" var="ami" type="ordered">
+					<f:facet name="header">
                             Amigos
                         </f:facet>
-                        <!-- nesse local deve ter chamadas, vide documentação -->
-                        <!-- DataList Basic: http://www.primefaces.org/showcase/ui/data/dataList.xhtml-->
-                    </p:dataList>
-                </p:layoutUnit>
-                
-                <!-- DataScroller http://www.primefaces.org/showcase/ui/data/datascroller/basic.xhtml -->
-                <p:layoutUnit position="center">
-                    <h:form> 
-                        <p:dataScroller value="#{controllerHome.eventos}" var="eve" chunkSize="3">
-                            <f:facet name="header">
+					<!-- nesse local deve ter chamadas, vide documentação -->
+					<!-- DataList Basic: http://www.primefaces.org/showcase/ui/data/dataList.xhtml-->
+				</p:dataList>
+			</p:layoutUnit>
+
+			<!-- DataScroller http://www.primefaces.org/showcase/ui/data/datascroller/basic.xhtml -->
+			<p:layoutUnit position="center">
+				<h:form>
+					<p:dataScroller value="#{home.eventos}" var="eve" chunkSize="3">
+						<f:facet name="header">
                                 Role para baixo e veja os eventos
                             </f:facet>
 
-                            <p:outputPanel>
-                                <h:panelGrid columns="2" cellpadding="5">
-                                    <h:outputText value="Nome do Evento: " />
-                                    <h:outputText value="#{eve.nome}" style="font-weight: bold"/>
+						<p:outputPanel>
+							<h:panelGrid columns="2" cellpadding="5">
+								<h:outputText value="Nome do Evento: " />
+								<h:outputText value="#{eve.nome}" style="font-weight: bold" />
 
-                                    <h:outputText value="Local do Evento:" />
-                                    <h:outputText value="#{eve.restaurante.nome}" style="font-weight: bold"/>
+								<!--<h:outputText value="Local do Evento:" />
+								                                     <h:outputText value="#{eve.restaurante.nome}" style="font-weight: bold"/> -->
 
-                                    <h:outputText value="Data: " />
-                                    <h:outputText value="#{eve.data}" style="font-weight: bold"/>
+								<h:outputText value="Data: " />
+								<h:outputText value="#{eve.data}" style="font-weight: bold" />
 
-                                    <h:outputText value="Horário: " />
-                                    <h:outputText value="#{eve.hora}" style="font-weight: bold"/>
+								<h:outputText value="Horário: " />
+								<h:outputText value="#{eve.hora}" style="font-weight: bold" />
 
-                                    <h:outputText value="Descrição: " />
-                                    <h:outputText value="#{eve.descricao}" style="font-weight: bold"/>
-                                </h:panelGrid>
-                            </p:outputPanel>
-                        </p:dataScroller>
-                    </h:form>
-                </p:layoutUnit>
+								<h:outputText value="Descrição: " />
+								<h:outputText value="#{eve.descricao}" style="font-weight: bold" />
+							</h:panelGrid>
+						</p:outputPanel>
+					</p:dataScroller>
+				</h:form>
+			</p:layoutUnit>
 
-            </p:layout>
+		</p:layout>
 
-        </h:body>
+	</h:body>
 
-    </f:view>
+</f:view>
 </html>
 

@@ -1,5 +1,6 @@
 package br.com.alive.boracomer.dao;
 
+import br.com.alive.boracomer.entity.Restaurante;
 import br.com.alive.boracomer.entity.Usuario;
 
 import javax.enterprise.context.Dependent;
@@ -39,6 +40,15 @@ public class UsuarioDAO {
 	@Transactional
 	public void atualizar(Usuario usuario) {
 		this.entityManager.merge(usuario);
+	}
+	
+	@Transactional
+	public Usuario findById(Long id) {
+		String queryStr = "select u from Usuario u where u.id = :id";
+		TypedQuery<Usuario> query = this.entityManager.createQuery(queryStr, Usuario.class);
+		query.setParameter("id", id);
+		List<Usuario> usuarios = query.getResultList();
+		return usuarios.isEmpty() ? null : usuarios.get(0);
 	}
 
 }

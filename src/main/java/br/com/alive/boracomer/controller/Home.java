@@ -25,6 +25,7 @@ public class Home implements Serializable {
 	private String pass;
 
 	private String numId;
+	private String idUserToInvite;
 
 	private String nomeEvento;
 	private String descricaoEvento;
@@ -39,13 +40,13 @@ public class Home implements Serializable {
 
 	@PostConstruct
 	public void reset() {
-		System.out.println("POST <<<<<<<<<<<<<<<<<<<<<+");
 		this.user = null;
 		this.pass = null;
 		this.nomeEvento = null;
 		this.descricaoEvento = null;
 		this.dataEvento = null;
 		this.horaEvento = null;
+		this.idUserToInvite = null;
 	}
 
 	@Inject
@@ -56,31 +57,16 @@ public class Home implements Serializable {
 
 	public String loginUsuario() {
 		this.usuario = new Usuario();
-		System.out.println("ENTROU");
-		// if (this.user.equals("admin") && this.pass.equals(pass)) {
-		// this.usuario = new Usuario();
-		System.out.println("antes do FOR");
 		List<Usuario> usuarios = usuarioDao.listaUsuarios();
-		System.out.println("RECEBE LISTA");
-		System.out.println("O TAMANHO DA LISTA EH >>>>> " + usuarios.size());
 		for (int i = 0; i < usuarios.size(); i++) {
-			System.out.println("O USUARIO QUE ESTA PASSANDO EH O > > > > " + usuarios.get(i).getNome());
 			if (usuarios.get(i).getNome().equals(user) && usuarios.get(i).getPass().equals(pass)) {
 				this.usuario = usuarios.get(i);
 				eventos = eventoDAO.findByUserId(usuario.getId_usuario());
-				System.out.println(
-						"Meu nome >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> " + this.usuario.getNome());
-				System.out.println(
-						"Meu id >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> " + this.usuario.getId_usuario());
-
 				setNumId(String.valueOf(this.usuario.getId_usuario()));
-
-				System.out.println("Meu numId >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> " + getNumId());
 
 				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", usuarios.get(i));
 				return "home";
 			}
-			// }
 		}
 		addMessage("Usuario/Senha incorreto(s)");
 		return "index";
@@ -120,17 +106,20 @@ public class Home implements Serializable {
 
 			return "home";
 		} catch (Exception e) {
-			System.out.println("DEU ERRO ! ! ! !");
+			addMessage("Erro ao cadastrar o evento");
 		}
 		return "novoEvento";
 	}
-	
-	public String cancelarNovoEvento(){
+
+	public String cancelarNovoEvento() {
 		return "home";
 	}
 
 	public void convidarAmigo() {
-
+		Usuario usuariosToInvite = usuarioDao.findById(Long.parseLong(idUserToInvite));
+		if(usuariosToInvite != null){
+			
+		}
 	}
 
 	public String getUser() {
@@ -147,6 +136,14 @@ public class Home implements Serializable {
 
 	public void setNumId(String numId) {
 		this.numId = numId;
+	}
+
+	public String getIdUserToInvite() {
+		return idUserToInvite;
+	}
+
+	public void setIdUserToInvite(String idUserToInvite) {
+		this.idUserToInvite = idUserToInvite;
 	}
 
 	public String getPass() {

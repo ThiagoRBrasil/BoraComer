@@ -12,7 +12,7 @@
     		<p:graphicImage url="imagens/logo.png" position="center" />
     		<br />
         	<h:form id="formLogin">
-	            <h:panelGrid columns="2" cellpadding="5" style="text-align:center">
+	            <h:panelGrid columns="2" >
 	                <p:outputLabel value="Login: " for="inputLogin"/>
 	                <p:inputText id="inputLogin" value="#{home.user}" />
 	
@@ -24,7 +24,7 @@
 	            <p:commandButton value="Cadastrar" id="btnLoginCadastrar" action="#{home.cadastrarUsuario}" styleClass="ui-priority-primary" />
             </h:form>
             <h:form>
-            <p:commandButton value="Cadastrar Restaurante" id="btnLoginCadastrarRest" action="#{home.cadastrarRestaurante}" styleClass="ui-priority-primary" />
+            	<p:commandButton value="Cadastrar Restaurante" id="btnLoginCadastrarRest" action="#{home.cadastrarRestaurante}" styleClass="ui-priority-primary" />
             </h:form>
     	</h:panelGrid>
     </h:body>

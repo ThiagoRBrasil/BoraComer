@@ -22,7 +22,7 @@
 					<h:panelGrid columns="3" cellpadding="5">
 
 						<p:outputLabel value="Seja Bem Vindo #{home.usuario.nome}" />
-						<p:outputLabel value="Identificador: #{home.numId}" />
+						<p:outputLabel value="Identificador: #{home.usuario.id_usuario}" />
 
 						<p:commandButton value="Logout" id="btnSair"
 							action="#{home.logout}" styleClass="ui-priority-primary" />
@@ -59,7 +59,7 @@
 			<!-- DataScroller http://www.primefaces.org/showcase/ui/data/datascroller/basic.xhtml -->
 			<p:layoutUnit position="center">
 				<h:form>
-					<p:dataScroller value="#{home.eventos}" var="eve" chunkSize="3">
+					<p:dataScroller value="#{home.eventos}" var="eve">
 						<f:facet name="header">
                                 Role para baixo e veja os eventos
                             </f:facet>

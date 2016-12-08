@@ -36,7 +36,7 @@ public class Home implements Serializable {
 	private static Usuario usuario;
 	private static List<Usuario> usuarios;
 
-	private List<Evento> eventos;
+	private static List<Evento> eventos;
 
 	@PostConstruct
 	public void reset() {
@@ -46,7 +46,6 @@ public class Home implements Serializable {
 		this.descricaoEvento = null;
 		this.dataEvento = null;
 		this.horaEvento = null;
-		this.idUserToInvite = null;
 	}
 
 	@Inject
@@ -103,7 +102,7 @@ public class Home implements Serializable {
 			evento.setHora(horaEvento);
 			evento.setId_usuario(Long.parseLong(String.valueOf(usuario.getId_usuario())));
 			eventoDAO.atualizar(evento);
-
+			eventos = eventoDAO.findByUserId(usuario.getId_usuario());
 			return "home";
 		} catch (Exception e) {
 			addMessage("Erro ao cadastrar o evento");
